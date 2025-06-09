@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ongediertebestrijding-holland.nl/sitemap.xml
