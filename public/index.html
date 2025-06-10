@@ -816,5 +816,40 @@ https://templatemo.com/tm-578-first-portfolio
         <script src="js/magnific-popup-options.js"></script>
         <script src="js/custom.js"></script>
 
+        <!-- COOKIES-->
+        <script>
+          // Zet een cookie
+          function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+          }
+        
+          // Lees een cookie
+          function getCookie(name) {
+            const cname = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const ca = decodedCookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+              let c = ca[i].trim();
+              if (c.indexOf(cname) == 0) {
+                return c.substring(cname.length, c.length);
+              }
+            }
+            return "";
+          }
+        
+          // Check of cookie al bestaat
+          window.onload = function() {
+            if (!getCookie("acceptCookies")) {
+              const consent = confirm("Deze site gebruikt cookies. Ga je akkoord?");
+              if (consent) {
+                setCookie("acceptCookies", "true", 365);
+              }
+            }
+          };
+        </script>
+
     </body>
 </html>
