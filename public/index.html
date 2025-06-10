@@ -816,40 +816,46 @@ https://templatemo.com/tm-578-first-portfolio
         <script src="js/magnific-popup-options.js"></script>
         <script src="js/custom.js"></script>
 
-        <!-- COOKIES-->
-        <script>
-          // Zet een cookie
-          function setCookie(name, value, days) {
-            const d = new Date();
-            d.setTime(d.getTime() + (days*24*60*60*1000));
-            const expires = "expires=" + d.toUTCString();
-            document.cookie = name + "=" + value + ";" + expires + ";path=/";
-          }
-        
-          // Lees een cookie
-          function getCookie(name) {
-            const cname = name + "=";
-            const decodedCookie = decodeURIComponent(document.cookie);
-            const ca = decodedCookie.split(';');
-            for(let i = 0; i < ca.length; i++) {
-              let c = ca[i].trim();
-              if (c.indexOf(cname) == 0) {
-                return c.substring(cname.length, c.length);
-              }
-            }
-            return "";
-          }
-        
-          // Check of cookie al bestaat
-          window.onload = function() {
-            if (!getCookie("acceptCookies")) {
-              const consent = confirm("Deze site gebruikt cookies. Ga je akkoord?");
-              if (consent) {
-                setCookie("acceptCookies", "true", 365);
-              }
-            }
-          };
-        </script>
+      <!-- Cookie Banner -->
+<div id="cookieBanner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #2c2c2c; color: white; padding: 15px; z-index: 9999; text-align: center; font-family: sans-serif; font-size: 14px;">
+  Deze website gebruikt cookies om uw ervaring te verbeteren.
+  <button onclick="acceptCookies()" style="margin-left: 15px; padding: 8px 12px; background-color: #4CAF50; border: none; color: white; cursor: pointer; border-radius: 4px;">
+    Akkoord
+  </button>
+</div>
+
+<script>
+  function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+  }
+
+  function getCookie(name) {
+    const cname = name + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i].trim();
+      if (c.indexOf(cname) == 0) {
+        return c.substring(cname.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function acceptCookies() {
+    setCookie("acceptCookies", "true", 365);
+    document.getElementById("cookieBanner").style.display = "none";
+  }
+
+  window.onload = function () {
+    if (!getCookie("acceptCookies")) {
+      document.getElementById("cookieBanner").style.display = "block";
+    }
+  };
+</script>
 
     </body>
 </html>
